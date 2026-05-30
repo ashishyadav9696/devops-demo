@@ -13,6 +13,8 @@ import {
   Loader2
 } from 'lucide-react';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ function App() {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/tasks');
+      const response = await fetch(`${API_BASE}/api/tasks`);
       if (!response.ok) throw new Error('Failed to fetch tasks');
       const data = await response.json();
       setTasks(data);
@@ -52,7 +54,7 @@ function App() {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch('/api/tasks', {
+      const response = await fetch(`${API_BASE}/api/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, status, priority })
@@ -87,7 +89,7 @@ function App() {
     setTasks(tasks.map(t => t._id === taskId ? { ...t, status: nextStatus } : t));
 
     try {
-      const response = await fetch(`/api/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE}/api/tasks/${taskId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: nextStatus })
@@ -114,7 +116,7 @@ function App() {
     setTasks(tasks.filter(t => t._id !== taskId));
 
     try {
-      const response = await fetch(`/api/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE}/api/tasks/${taskId}`, {
         method: 'DELETE'
       });
 
