@@ -1,4 +1,4 @@
-# TaskFlow // Premium Task Space
+# TaskFlow //  Task Space
 
 TaskFlow is a premium, glassmorphic dark-themed Kanban task management workspace built with React (Vite) on the frontend, Node.js + Express on the backend, and MongoDB as the database. It is fully containerized using Docker and Docker Compose.
 
