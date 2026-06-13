@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo:latest
-    container_name: taskflow_db
-    restart: unless-stopped
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    networks:
-      - taskflow_net
-
   server:
     build: ./server
     container_name: taskflow_server
@@ -19,11 +8,9 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/tasks
+      - MONGO_URI=mongodb+srv://ashish9696yadav97040_db_user:ashishYadav9696%23@todolistclustor.wrxpbtw.mongodb.net/fitplusfitnessdatabase?retryWrites=true&w=majority&appName=todolistclustor
       - PORT=5000
       - NODE_ENV=production
-    depends_on:
-      - mongo
     networks:
       - taskflow_net
 
@@ -37,9 +24,6 @@ services:
       - server
     networks:
       - taskflow_net
-
-volumes:
-  mongo_data:
 
 networks:
   taskflow_net:

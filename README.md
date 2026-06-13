@@ -1,6 +1,6 @@
-# TaskFlow //  Task Space
+# FitPulse // Fitness & Workout Tracker Workspace
 
-TaskFlow is a premium, glassmorphic dark-themed Kanban task management workspace built with React (Vite) on the frontend, Node.js + Express on the backend, and MongoDB as the database. It is fully containerized using Docker and Docker Compose.
+FitPulse is a premium, glassmorphic dark-themed fitness dashboard and workout logger built with React (Vite) on the frontend, Node.js + Express on the backend, and MongoDB as the database. It is fully containerized using Docker and Docker Compose.
 
 ## Architecture Overview
 
@@ -30,7 +30,7 @@ TaskFlow is a premium, glassmorphic dark-themed Kanban task management workspace
 
 ## Getting Started / Running the App
 
-You can run TaskFlow in two ways: **Option A (Docker)** or **Option B (Manual Local Setup)**.
+You can run FitPulse in two ways: **Option A (Docker)** or **Option B (Manual Local Setup)**.
 
 ### Option A: Running via Docker (Easiest & Recommended)
 This runs the frontend client, backend server, and MongoDB database automatically in Docker.
@@ -42,12 +42,12 @@ This runs the frontend client, backend server, and MongoDB database automaticall
    ```
 3. Once the build completes and containers start, open your browser and navigate to:
    - **Frontend Workspace**: [http://localhost:5173](http://localhost:5173)
-   - **Backend API Server**: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
+   - **Backend API Server**: [http://localhost:5000/api/workouts](http://localhost:5000/api/workouts)
 4. To stop the application:
    ```bash
    docker-compose down
    ```
-   *(To wipe all database tasks and start completely fresh, use `docker-compose down -v`)*
+   *(To wipe all database records and start completely fresh, use `docker-compose down -v`)*
 
 ---
 
@@ -140,27 +140,31 @@ Heroku supports building and releasing Docker containers directly.
 1. **Install Heroku CLI** and log in:
    ```bash
    heroku login
+   ```
+   ```bash
    heroku container:login
    ```
 2. **Create a Heroku App**:
    ```bash
-   heroku create taskflow-workspace
+   heroku create fitpulse-workspace
    ```
 3. **Provision a MongoDB Database**:
    Add a MongoDB add-on (e.g., ObjectRocket or MongoAtlas) or configure a connection string from MongoDB Atlas:
    ```bash
-   heroku config:set MONGO_URI="mongodb+srv://user:pass@cluster.mongodb.net/tasks"
+   heroku config:set MONGO_URI="mongodb+srv://user:pass@cluster.mongodb.net/fitpulse"
    ```
 4. **Deploy Containers**:
    Push both components using their Dockerfiles:
    ```bash
    # Push server
-   heroku container:push web --app taskflow-workspace --context ./server
+   heroku container:push web --app fitpulse-workspace --context ./server
    # Push client
-   heroku container:push web --app taskflow-workspace-client --context ./client
+   heroku container:push web --app fitpulse-workspace-client --context ./client
    ```
 5. **Release and open**:
    ```bash
-   heroku container:release web --app taskflow-workspace
-   heroku open --app taskflow-workspace
+   heroku container:release web --app fitpulse-workspace
+   ```
+   ```bash
+   heroku open --app fitpulse-workspace
    ```
